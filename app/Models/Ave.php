@@ -24,7 +24,7 @@ class Ave extends Model
         'esperanza_vida',
         'region',
         'descripcion',
-        'categoria_id',
+        'category_id',
     ];
     public function Categorias()
     {

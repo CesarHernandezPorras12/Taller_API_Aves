@@ -36,6 +36,7 @@ class AveFactory extends Factory
             'cantante' => $this->faker->boolean,
             'region' => $this->faker->country,
             'descripcion' => $this->faker->sentence,
+            'category_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

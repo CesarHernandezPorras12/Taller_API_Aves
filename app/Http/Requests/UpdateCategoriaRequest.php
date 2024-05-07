@@ -23,7 +23,7 @@ class UpdateCategoriaRequest extends FormRequest
     {
         return [
             'nombre' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'descripcion' => ['required', 'string', 'max:255'],
             'cantidad_aves' => ['required', 'integer'],
         ];
     }

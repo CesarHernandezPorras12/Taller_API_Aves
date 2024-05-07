@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ModelCategoria;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateCategoriaRequest; 
 
 class CategoriaController extends Controller
 {
@@ -11,7 +13,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        return ModelCategoria::all();
+
     }
 
     /**
@@ -19,7 +22,9 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = ModelCategoria::create($request->validated());
+        return response()->json($categoria, 201);
+
     }
 
     /**
@@ -27,15 +32,24 @@ class CategoriaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $categoria = ModelCategoria::findOrFail($id);
+        $aves = $categoria->Aves()->get();
+
+        return response()->json([
+            'categorias' => $categoria,
+            'aves' => $aves
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCategoriaRequest $request, string $id)
     {
-        //
+        $categoria = ModelCategoria::findOrFail($id);
+        $categoria->update($request->validated());
+        return response()->json($categoria);
+
     }
 
     /**
@@ -43,6 +57,9 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $categoria = ModelCategoria::findOrFail($id);
+        $categoria->delete();
+        return response()->json(null, 204);
+
     }
 }
