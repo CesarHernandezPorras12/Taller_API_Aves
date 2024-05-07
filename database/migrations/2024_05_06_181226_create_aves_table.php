@@ -27,6 +27,8 @@ return new class extends Migration
             $table->boolean('cantante'); 
             $table->string('region'); 
             $table->text('descripcion'); 
+            $table->unsignedBigInteger('categoria_id')->nullable(); // Agregamos el campo categoria_id como clave foránea
+            $table->foreign('categoria_id')->references('id')->on('categorias'); // Definimos la relación con la tabla de categorías
             $table->timestamps();
         });
         
@@ -37,6 +39,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('aves', function (Blueprint $table) {
+            $table->dropForeign(['categoria_id']);
+        });
         Schema::dropIfExists('aves');
     }
 };

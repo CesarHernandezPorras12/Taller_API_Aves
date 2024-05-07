@@ -29,9 +29,6 @@ class AveResource extends JsonResource
             'region' =>$this->region,
             'descripcion' =>$this->descripcion
             
-
-            
-
-        ];
+            ];
     }
 }

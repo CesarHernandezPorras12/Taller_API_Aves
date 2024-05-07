@@ -13,3 +13,7 @@ Route::apiResources( resources:[
 ]);
 
 Route::post('login',[\App\Http\Controllers\LoginController::class,'login']);
+
+Route::apiResources( resources:[
+    'categorias' => App\Http\Controllers\CategoriaController::class,
+]);
